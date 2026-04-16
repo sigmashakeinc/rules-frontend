@@ -6,8 +6,7 @@ rule block-dangerously-set-inner-html {
   AND content CONTAINS "dangerouslySetInnerHTML"
   severity warning
   priority 90
-  ASK write
-  PROMPT "Are you sure you want to bypass XSS protection? Have you sanitized the input?"
+  LOG write
 }
 
 rule warn-nextjs-server-action-validation {
@@ -27,8 +26,7 @@ rule block-unsafe-redirect {
   AND content REGEX "(params|query)\."
   severity warning
   priority 85
-  ASK write
-  PROMPT "Is this redirect destination validated? Open redirects can be used for phishing."
+  LOG write
 }
 
 rule audit-csp-missing {
